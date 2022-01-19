@@ -9,10 +9,7 @@ if __name__ =="__main__":
 	# Load the language model
 	nlp = spacy.load("./training/model-best")
 
-	sentence = 'Gidersem belki olabilir'
-
-
-
+	sentence = "Burak, bizim manavdan 10 adet elma satın aldı"
 
 	doc = nlp(sentence)
 	print(doc);
@@ -31,7 +28,7 @@ if __name__ =="__main__":
 	# for jupiter, uncomment the next line
 	# displacy.render(doc, style='dep', jupyter=True, options={'distance': 120})
 
-	# svg = displacy.render(doc, style='dep', options={'distance': 120})
+	svg = displacy.render(doc, style='dep', options={'distance': 120})
 
-	# output_path = Path("./dependency_plot.svg")
-	# output_path.open("w", encoding="utf-8").write(svg)
+	output_path = Path("./dependency_plot.svg")
+	output_path.open("w", encoding="utf-8").write(svg)
