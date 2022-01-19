@@ -1,0 +1,11 @@
+python3 -m spacy convert tr_imst-ud-train.conllu treebank/ --converter conllu --n-sents 10 --merge-subtokens
+python3 -m spacy convert tr_imst-ud-test.conllu treebank/ --converter conllu --n-sents 10 --merge-subtokens
+python3 -m spacy convert tr_imst-ud-dev.conllu treebank/ --converter conllu --n-sents 10 --merge-subtokens
+
+python3 -m spacy init fill-config ./default.cfg ./config.cfg
+
+python3 -m spacy train ./config.cfg --output training/ --paths.train treebank/tr_imst-ud-train.spacy --paths.dev treebank/tr_imst-ud-dev.spacy --nlp.lang=tr
+python3 -m spacy evaluate ./training/model-best treebank/tr_imst-ud-test.spacy --output ./metrics/tr_imst-ud.json --displacy-path ./
+python3 -m spacy package ./training/model-best packages --name trdp --version 1.0 --force
+
+python3 parser.py
