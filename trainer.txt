@@ -1,0 +1,5 @@
+python3 -m spacy convert tr_imst-ud-train.conllu treebank/ --converter conllu --n-sents 10 --merge-subtokens
+python3 -m spacy convert tr_imst-ud-test.conllu treebank/ --converter conllu --n-sents 10 --merge-subtokens
+python3 -m spacy convert tr_imst-ud-dev.conllu treebank/ --converter conllu --n-sents 10 --merge-subtokens
+
+python3 -m spacy train ./default.cfg --output training/ --paths.train treebank/tr_imst-ud-train.spacy --paths.dev treebank/tr_imst-ud-dev.spacy --nlp.lang=tr
